@@ -4,7 +4,7 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.macuxi.camarao.domain.Cliente;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.services.validation.ClienteUpdate;
 
 import org.hibernate.validator.constraints.Email;
@@ -25,7 +25,7 @@ public class ClienteDTO implements Serializable {
 	public ClienteDTO() {
 		
 	}
-	public ClienteDTO(Cliente obj) {
+	public ClienteDTO(Usuario obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		email = obj.getEmail();

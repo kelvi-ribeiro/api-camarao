@@ -8,8 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.macuxi.camarao.domain.Cliente;
-import com.macuxi.camarao.domain.enums.TipoCliente;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.dto.ClienteNewDTO;
 import com.macuxi.camarao.repositories.ClienteRepository;
 import com.macuxi.camarao.resources.exception.FieldMessage;
@@ -28,15 +27,11 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 
 		List<FieldMessage> list = new ArrayList<>();
 
-		if (objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod()) && !BR.isValidCPF(objDto.getCpfOuCnpj())) {
+		if (!BR.isValidCPF(objDto.getCpf())) {
 			list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
-		}
-
-		if (objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod()) && !BR.isValidCNPJ(objDto.getCpfOuCnpj())) {
-			list.add(new FieldMessage("cpfOuCnpj", "CNPJ inválido"));
-		}
+		}		
 		
-		Cliente aux = repo.findByEmail(objDto.getEmail());
+		Usuario aux = repo.findByEmail(objDto.getEmail());
 		if(aux!=null) {
 			list.add(new FieldMessage("email","email Já existente"));
 		}

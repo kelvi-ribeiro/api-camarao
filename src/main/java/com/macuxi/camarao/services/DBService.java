@@ -9,12 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Cidade;
-import com.macuxi.camarao.domain.Cliente;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.domain.Endereco;
 import com.macuxi.camarao.domain.Estado;
 
 import com.macuxi.camarao.domain.enums.Perfil;
-import com.macuxi.camarao.domain.enums.TipoCliente;
 import com.macuxi.camarao.repositories.CidadeRepository;
 import com.macuxi.camarao.repositories.ClienteRepository;
 import com.macuxi.camarao.repositories.EnderecoRepository;

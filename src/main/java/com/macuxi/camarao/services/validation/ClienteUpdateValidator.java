@@ -11,7 +11,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.macuxi.camarao.domain.Cliente;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.dto.ClienteDTO;
 import com.macuxi.camarao.repositories.ClienteRepository;
 import com.macuxi.camarao.resources.exception.FieldMessage;
@@ -37,7 +37,7 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
 
 		
 		
-		Cliente aux = repo.findByEmail(objDto.getEmail());
+		Usuario aux = repo.findByEmail(objDto.getEmail());
 		if(aux!=null && !aux.getId().equals(uriId)) {
 			list.add(new FieldMessage("email","email Já existente"));
 		}

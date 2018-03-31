@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.macuxi.camarao.domain.Cliente;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.repositories.ClienteRepository;
 import com.macuxi.camarao.services.exceptions.ObjectNotFoundException;
 
@@ -26,7 +26,7 @@ public class AuthService {
 	
 	public void sendNewPassword(String email) {
 		
-		Cliente cliente = clienteRepository.findByEmail(email);
+		Usuario cliente = clienteRepository.findByEmail(email);
 		if (cliente == null) {
 			throw new ObjectNotFoundException("Email não encontrado");
 		}

@@ -30,19 +30,5 @@ public class BR {
         final Integer digit1 = calculate(ssn.substring(0, 9), weightSsn);
         final Integer digit2 = calculate(ssn.substring(0, 9) + digit1, weightSsn);
         return ssn.equals(ssn.substring(0, 9) + digit1.toString() + digit2.toString());
-    }
-
-    /**
-     * Valida CNPJ
-     *
-     * @param tin
-     * @return
-     */
-    public static boolean isValidCNPJ(final String tin) {
-        if ((tin == null) || (tin.length() != 14) || tin.matches(tin.charAt(0) + "{14}")) return false;
-
-        final Integer digit1 = calculate(tin.substring(0, 12), weightTin);
-        final Integer digit2 = calculate(tin.substring(0, 12) + digit1, weightTin);
-        return tin.equals(tin.substring(0, 12) + digit1.toString() + digit2.toString());
-    }
+    }   
 }
