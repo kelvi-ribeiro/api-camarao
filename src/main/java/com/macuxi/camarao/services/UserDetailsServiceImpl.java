@@ -7,14 +7,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Usuario;
-import com.macuxi.camarao.repositories.ClienteRepository;
+import com.macuxi.camarao.repositories.UsuarioRepository;
 import com.macuxi.camarao.security.UserSS;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private ClienteRepository repo;
+	private UsuarioRepository repo;
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

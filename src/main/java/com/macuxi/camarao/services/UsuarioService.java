@@ -18,10 +18,10 @@ import com.macuxi.camarao.domain.Cidade;
 import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.domain.Endereco;
 import com.macuxi.camarao.domain.enums.Perfil;
-import com.macuxi.camarao.dto.ClienteDTO;
-import com.macuxi.camarao.dto.ClienteNewDTO;
+import com.macuxi.camarao.dto.UsuarioDTO;
+import com.macuxi.camarao.dto.UsuarioNewDTO;
 import com.macuxi.camarao.repositories.CidadeRepository;
-import com.macuxi.camarao.repositories.ClienteRepository;
+import com.macuxi.camarao.repositories.UsuarioRepository;
 import com.macuxi.camarao.repositories.EnderecoRepository;
 import com.macuxi.camarao.security.UserSS;
 import com.macuxi.camarao.services.exceptions.AuthorizationException;
@@ -29,7 +29,7 @@ import com.macuxi.camarao.services.exceptions.DataIntegrityException;
 import com.macuxi.camarao.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ClienteService {
+public class UsuarioService {
 
 	@Value("${img.profile.size}")
 	private int size;
@@ -41,7 +41,7 @@ public class ClienteService {
 	private BCryptPasswordEncoder pe;
 
 	@Autowired
-	private ClienteRepository repo;
+	private UsuarioRepository repo;
 
 	@Autowired
 	private CidadeRepository cidadeRepository;
@@ -116,11 +116,11 @@ public class ClienteService {
 		return repo.findAll(pageRequest);
 	}
 
-	public Usuario fromDTO(ClienteDTO objDto) {
+	public Usuario fromDTO(UsuarioDTO objDto) {
 		return new Usuario(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
 	}
 
-	public Usuario fromDTO(ClienteNewDTO objDto) {
+	public Usuario fromDTO(UsuarioNewDTO objDto) {
 		Usuario cli = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpf(),
 				pe.encode(objDto.getSenha()));
 		Cidade cid = cidadeRepository.findOne(objDto.getCidadeId());

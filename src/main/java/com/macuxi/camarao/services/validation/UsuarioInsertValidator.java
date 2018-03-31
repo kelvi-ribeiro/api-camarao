@@ -2,43 +2,37 @@ package com.macuxi.camarao.services.validation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.HandlerMapping;
 
 import com.macuxi.camarao.domain.Usuario;
-import com.macuxi.camarao.dto.ClienteDTO;
-import com.macuxi.camarao.repositories.ClienteRepository;
+import com.macuxi.camarao.dto.UsuarioNewDTO;
+import com.macuxi.camarao.repositories.UsuarioRepository;
 import com.macuxi.camarao.resources.exception.FieldMessage;
+import com.macuxi.camarao.services.validation.utils.BR;
 
-public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
+public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsert, UsuarioNewDTO> {
+	
 	@Autowired
-	private HttpServletRequest request;
-	@Autowired
-	private ClienteRepository repo;
+	private UsuarioRepository repo;
 	@Override
-	public void initialize(ClienteUpdate ann) {
+	public void initialize(UsuarioInsert ann) {
 	}
 
-	@SuppressWarnings("unused")
 	@Override
-	public boolean isValid(ClienteDTO objDto, ConstraintValidatorContext context) {
-		
-		@SuppressWarnings("unchecked")
-		Map<String,String> map =(Map<String,String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-		Integer uriId = Integer.parseInt(map.get("id"));
-		
+	public boolean isValid(UsuarioNewDTO objDto, ConstraintValidatorContext context) {
+
 		List<FieldMessage> list = new ArrayList<>();
 
-		
+		if (!BR.isValidCPF(objDto.getCpf())) {
+			list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
+		}		
 		
 		Usuario aux = repo.findByEmail(objDto.getEmail());
-		if(aux!=null && !aux.getId().equals(uriId)) {
+		if(aux!=null) {
 			list.add(new FieldMessage("email","email Já existente"));
 		}
 

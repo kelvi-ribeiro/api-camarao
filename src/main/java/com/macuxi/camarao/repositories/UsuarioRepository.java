@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.macuxi.camarao.domain.Usuario;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Usuario, Integer> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	@Transactional(readOnly=true)
 	Usuario findByEmail(String email);

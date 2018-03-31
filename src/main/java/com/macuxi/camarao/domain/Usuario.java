@@ -50,7 +50,7 @@ public class Usuario implements Serializable {
 	private Set<Integer> perfis = new HashSet<>();
 
 	public Usuario() {
-		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.USUARIO);
 	}
 
 	public Usuario(Integer id, String nome, String email, String cpf, String senha) {
@@ -60,7 +60,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.cpf = cpf;
 		this.senha = senha;
-		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.USUARIO);
 	}
 
 	public Integer getId() {
@@ -87,12 +87,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpfOuCnpj() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpfOuCnpj(String cpfOuCnpj) {
-		this.cpf = cpfOuCnpj;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getSenha() {

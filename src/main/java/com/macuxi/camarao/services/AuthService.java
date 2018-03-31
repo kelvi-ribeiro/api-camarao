@@ -7,14 +7,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Usuario;
-import com.macuxi.camarao.repositories.ClienteRepository;
+import com.macuxi.camarao.repositories.UsuarioRepository;
 import com.macuxi.camarao.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class AuthService {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private UsuarioRepository clienteRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder pe;

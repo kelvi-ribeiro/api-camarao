@@ -6,10 +6,10 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.macuxi.camarao.services.validation.ClienteInsert;
+import com.macuxi.camarao.services.validation.UsuarioInsert;
 
-@ClienteInsert
-public class ClienteNewDTO implements Serializable{
+@UsuarioInsert
+public class UsuarioNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	//Cliente
@@ -52,7 +52,7 @@ public class ClienteNewDTO implements Serializable{
 	//Cidade
 	private Integer cidadeId;
 	
-	public ClienteNewDTO() {
+	public UsuarioNewDTO() {
 		
 	}
 

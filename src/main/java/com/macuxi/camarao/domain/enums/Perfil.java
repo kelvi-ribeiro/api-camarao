@@ -3,7 +3,7 @@ package com.macuxi.camarao.domain.enums;
 public enum Perfil {
 	
 	ADMIN(1, "ROLE_ADMIN"),
-	CLIENTE(2, "ROLE_CLIENTE");
+	USUARIO(2, "ROLE_USUARIO");
 	
 	private int cod;
 	private String descricao;

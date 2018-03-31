@@ -5,12 +5,12 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.macuxi.camarao.domain.Usuario;
-import com.macuxi.camarao.services.validation.ClienteUpdate;
+import com.macuxi.camarao.services.validation.UsuarioUpdate;
 
 import org.hibernate.validator.constraints.Email;
 
-@ClienteUpdate
-public class ClienteDTO implements Serializable {
+@UsuarioUpdate
+public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -22,10 +22,10 @@ public class ClienteDTO implements Serializable {
 	@Email(message="Email inválido")
 	private String email;
 	
-	public ClienteDTO() {
+	public UsuarioDTO() {
 		
 	}
-	public ClienteDTO(Usuario obj) {
+	public UsuarioDTO(Usuario obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		email = obj.getEmail();

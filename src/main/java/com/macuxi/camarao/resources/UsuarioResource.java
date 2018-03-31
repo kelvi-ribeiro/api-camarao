@@ -20,16 +20,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.macuxi.camarao.domain.Usuario;
-import com.macuxi.camarao.dto.ClienteDTO;
-import com.macuxi.camarao.dto.ClienteNewDTO;
-import com.macuxi.camarao.services.ClienteService;
+import com.macuxi.camarao.dto.UsuarioDTO;
+import com.macuxi.camarao.dto.UsuarioNewDTO;
+import com.macuxi.camarao.services.UsuarioService;
 
 @RestController
-@RequestMapping(value="/clientes")
-public class ClienteResource {
+@RequestMapping(value="/usuarios")
+public class UsuarioResource {
 	
 	@Autowired
-	private ClienteService service;
+	private UsuarioService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
@@ -44,7 +44,7 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioNewDTO objDto) {
 		Usuario obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -53,7 +53,7 @@ public class ClienteResource {
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioDTO objDto, @PathVariable Integer id) {
 		Usuario obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
@@ -69,21 +69,21 @@ public class ClienteResource {
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<ClienteDTO>> findAll() {
+	public ResponseEntity<List<UsuarioDTO>> findAll() {
 		List<Usuario> list = service.findAll();
-		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());  
+		List<UsuarioDTO> listDto = list.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<ClienteDTO>> findPage(
+	public ResponseEntity<Page<UsuarioDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
 		Page<Usuario> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<ClienteDTO> listDto = list.map(obj -> new ClienteDTO(obj));  
+		Page<UsuarioDTO> listDto = list.map(obj -> new UsuarioDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
 
