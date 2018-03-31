@@ -69,10 +69,10 @@ public class UsuarioResource {
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<UsuarioDTO>> findAll() {
+	public ResponseEntity<List<Usuario>> findAll() {
 		List<Usuario> list = service.findAll();
-		List<UsuarioDTO> listDto = list.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());  
-		return ResponseEntity.ok().body(listDto);
+		//List<UsuarioDTO> listDto = list.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());  
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
@@ -86,7 +86,7 @@ public class UsuarioResource {
 		Page<UsuarioDTO> listDto = list.map(obj -> new UsuarioDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
-
+	
 	@RequestMapping(value="/picture", method=RequestMethod.POST)
 	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
 		URI uri = service.uploadProfilePicture(file);
