@@ -1,13 +1,46 @@
 package com.macuxi.camarao.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.macuxi.camarao.domain.Temperatura;
+import com.macuxi.camarao.repositories.TemperaturaRepository;
+
+
 @Service
-public class TemperaturaService {	
+public class TemperaturaService {
 	
-	public  int generateTemperatura() {
-		int number = (int) (Math.random() * 30);		
+	Integer numeroMaior  = 0;
+	@Autowired
+	TemperaturaRepository repo;
+	
+	
+	public  void generateTemperatura() {
+		Temperatura temperatura =  new Temperatura(null,(Math.random() * 30));
+		this.insert(temperatura);
 		
-		return number;
 	}
+	
+	public Temperatura insert(Temperatura obj) {
+		obj.setId(null);
+		obj = repo.save(obj);		
+		return obj;
+	}
+	
+	public Temperatura findTemperatura() {		
+		List<Temperatura> temperaturas = repo.findAll();
+		temperaturas.stream().forEach(x->{
+			if(this.numeroMaior<x.getId()) {
+				this.numeroMaior = x.getId();
+			}
+		
+			
+		});
+		Temperatura temperatura = repo.findOne(numeroMaior);
+		return temperatura;
+	}
+	
+
 }

@@ -19,7 +19,7 @@ public class ProdConfig {
 	private DBService dbService;
 
 	@Bean
-	public boolean instantiateDatabase() throws ParseException {
+	public boolean instantiateDatabase() throws Exception {
 		dbService.instantiateTestDatabase();
 		return true;
 	}

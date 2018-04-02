@@ -1,6 +1,5 @@
 package com.macuxi.camarao.services;
 
-import java.text.ParseException;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +30,9 @@ public class DBService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	@Autowired
-	private EnderecoRepository enderecoRepository;
+	private EnderecoRepository enderecoRepository;	
 	
-	
-	public void instantiateTestDatabase() throws ParseException {
+	public void instantiateTestDatabase() throws Exception {
 		
 		Estado est1 = new Estado(null, "Rio de Janeiro");
 		Estado est2 = new Estado(null, "São Paulo");
@@ -76,6 +74,7 @@ public class DBService {
 		
 		usuarioRepository.save(Arrays.asList(us1, us2,us3,us4));
 		enderecoRepository.save(Arrays.asList(e1, e2, e3,e4,e5));
+		
 		
 		
 }
