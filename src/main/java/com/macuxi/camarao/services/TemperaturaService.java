@@ -1,7 +1,5 @@
 package com.macuxi.camarao.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +8,8 @@ import com.macuxi.camarao.repositories.TemperaturaRepository;
 
 
 @Service
-public class TemperaturaService {
+public class TemperaturaService {	
 	
-	Integer numeroMaior  = 0;
 	@Autowired
 	TemperaturaRepository repo;
 	
