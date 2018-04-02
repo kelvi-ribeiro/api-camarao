@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 public class PhService {	
 	
 	public  int generatePh() {
-		int number = (int) (Math.random() * 25);		
+		int number = (int) (Math.random() *((32 - 25) + 1) + 25);	
+		
 		
 		return number;
 	}
