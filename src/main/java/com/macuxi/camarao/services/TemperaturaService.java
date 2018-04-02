@@ -30,15 +30,7 @@ public class TemperaturaService {
 	}
 	
 	public Temperatura findTemperatura() {		
-		List<Temperatura> temperaturas = repo.findAll();
-		temperaturas.stream().forEach(x->{
-			if(this.numeroMaior<x.getId()) {
-				this.numeroMaior = x.getId();
-			}
-		
-			
-		});
-		Temperatura temperatura = repo.findOne(numeroMaior);
+		Temperatura temperatura = repo.findFirstByOrderByIdDesc();
 		return temperatura;
 	}
 	
