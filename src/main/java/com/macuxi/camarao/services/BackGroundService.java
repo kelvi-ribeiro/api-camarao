@@ -10,12 +10,20 @@ import org.springframework.stereotype.Service;
     	@Autowired
     	private TemperaturaService temperaturaService;
     	
+    	@Autowired
+    	private PhService phService;
+    	
+    	@Autowired
+    	SalinidadeService salinidadeService;
+    	
         @Override
 		public Object doInBackground() throws Exception {
             while (true) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        temperaturaService.generateTemperatura();                         
+                        temperaturaService.generateTemperatura(); 
+                        phService.generatePh();
+                        salinidadeService.generateSalinidade();
                     }
                 });
                 try {
