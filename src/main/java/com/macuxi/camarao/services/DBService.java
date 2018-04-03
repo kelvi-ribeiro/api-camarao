@@ -25,11 +25,14 @@ public class DBService {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
 	@Autowired
 	private CidadeRepository cidadeRepository;
-	@Autowired
+	
+	@Autowired	
 	private UsuarioRepository usuarioRepository;
-	@Autowired
+	
+	@Autowired	
 	private EnderecoRepository enderecoRepository;	
 	
 	public void instantiateTestDatabase() throws Exception {
@@ -48,7 +51,7 @@ public class DBService {
 		estadoRepository.save(Arrays.asList(est1, est2,est3));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));
 		
-		Usuario us2 = new Usuario(null, "Roberto Almeida", "roberto.almeida@gmail.com", "31628382740", pe.encode("123"));
+		Usuario us2 = new Usuario(null, "Thiago Souza", "thiago.souza@gmail.com", "31628382740", pe.encode("123"));
 		us2.getTelefones().addAll(Arrays.asList("93883321", "34252625"));
 		us2.addPerfil(Perfil.ADMIN);
 		
