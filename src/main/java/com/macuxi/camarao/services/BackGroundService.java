@@ -25,6 +25,13 @@ import org.springframework.stereotype.Service;
     	@Autowired
     	NitritoService nitritoService;
     	
+    	@Autowired
+    	OxigenioDissolvidoService oxigenioDissolvidoService;
+    	
+    	@Autowired
+    	NitratoService nitratoService;	
+    	
+    	
         @Override
 		public Object doInBackground() throws Exception {
             while (true) {
@@ -36,6 +43,8 @@ import org.springframework.stereotype.Service;
                         amoniaTotalService.generateAmoniaTotal();
                         transparenciaService.generateTransparencia();
                         nitritoService.generateNitrito();
+                        oxigenioDissolvidoService.generateOxigenioDissolvido();
+                        nitratoService.generateNitrato();
                     }
                 });
                 try {
