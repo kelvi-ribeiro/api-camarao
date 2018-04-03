@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
     	@Autowired
     	AmoniaTotalService amoniaTotalService;	
     	
+    	@Autowired
+    	TransparenciaService transparenciaService;
+    	
         @Override
 		public Object doInBackground() throws Exception {
             while (true) {
@@ -28,6 +31,7 @@ import org.springframework.stereotype.Service;
                         phService.generatePh();
                         salinidadeService.generateSalinidade();
                         amoniaTotalService.generateAmoniaTotal();
+                        transparenciaService.generateTransparencia();
                     }
                 });
                 try {
