@@ -13,7 +13,7 @@ public class PhService {
 	PhRepository repo;	
 	
 	public  void generatePh() {
-		Ph ph =  new Ph(null,(Math.random() *((8.3 - 7.8) + 1) + 8.3));
+		Ph ph =  new Ph(null,(Math.random() *((8.3 - 7.8) + 1) + 7.8));
 		this.insert(ph);
 		
 	}
