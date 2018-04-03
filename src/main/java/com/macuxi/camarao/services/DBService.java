@@ -37,7 +37,7 @@ public class DBService {
 	
 	public void instantiateTestDatabase() throws Exception {
 		
-		Estado est1 = new Estado(null, "Rio de Janeiro");
+		/*Estado est1 = new Estado(null, "Rio de Janeiro");
 		Estado est2 = new Estado(null, "São Paulo");
 		Estado est3 = new Estado(null, "Ceará");
 		
@@ -80,5 +80,5 @@ public class DBService {
 		
 		
 		
-}
+*/}
 }
