@@ -15,7 +15,7 @@ public class TemperaturaService {
 	
 	
 	public  void generateTemperatura() {
-		Temperatura temperatura =  new Temperatura(null,(Math.random() *((32 - 25) + 1) + 25));
+		Temperatura temperatura =  new Temperatura(null,(Math.random() *((33 - 28) + 1) + 28));
 		this.insert(temperatura);
 		
 	}
