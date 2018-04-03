@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.macuxi.camarao.domain.Ph;
 import com.macuxi.camarao.services.PhService;
 
 @RestController
@@ -13,13 +14,11 @@ import com.macuxi.camarao.services.PhService;
 public class PhResource {
 	
 	@Autowired
-	PhService phService;
+	PhService phService;	
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<Integer> find(){
-		 int number = phService.generatePh();
-		return ResponseEntity.ok().body(number);
+	public ResponseEntity<Ph> find() throws Exception{		
+		Ph ph = phService.findPh();
+		return ResponseEntity.ok().body(ph);
 	}
-	
-
 }
