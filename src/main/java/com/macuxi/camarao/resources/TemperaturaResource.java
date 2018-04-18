@@ -21,4 +21,10 @@ public class TemperaturaResource {
 		Temperatura temperatura = temperaturaService.findTemperatura();
 		return ResponseEntity.ok().body(temperatura);
 	}
+	
+	@RequestMapping(value="/generateOut",method=RequestMethod.GET)
+	public void generateTemperaturaAlertante() throws Exception{		
+		temperaturaService.generateTemperaturaForaDoPadrao();
+		
+	}
 }
