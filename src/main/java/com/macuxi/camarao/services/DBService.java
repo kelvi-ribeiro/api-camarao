@@ -37,7 +37,7 @@ public class DBService {
 	
 	public void instantiateTestDatabase() throws Exception {
 		
-		/*Estado est1 = new Estado(null, "Rio de Janeiro");
+		Estado est1 = new Estado(null, "Rio de Janeiro");
 		Estado est2 = new Estado(null, "São Paulo");
 		Estado est3 = new Estado(null, "Ceará");
 		
@@ -51,17 +51,17 @@ public class DBService {
 		estadoRepository.save(Arrays.asList(est1, est2,est3));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));
 		
-		Usuario us2 = new Usuario(null, "Thiago Souza", "thiago.souza@gmail.com", "31628382740", pe.encode("123"));
+		Usuario us2 = new Usuario(null, "Thiago Souza", "kelvi.ribeiro@gmail.com", "31628382740", pe.encode("123"));
 		us2.getTelefones().addAll(Arrays.asList("93883321", "34252625"));
 		us2.addPerfil(Perfil.ADMIN);
 		
 		Usuario us1 = new Usuario(null, "Kelvi Martins", "kelvi.ribeiro@unigranrio.br", "36378912377", pe.encode("123"));
 		us1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		
-		Usuario us3 = new Usuario(null, "Felipe Lamin", "felipe.lamin@unigranrio.br", "53893776052", pe.encode("123"));
+		Usuario us3 = new Usuario(null, "Felipe Lamin", "k.vi123@hotmail.com", "53893776052", pe.encode("123"));
 		us3.getTelefones().addAll(Arrays.asList("27582490", "966749309"));
 		
-		Usuario us4 = new Usuario(null, "Wagner Fragoso", "wagner.fragoso@unigranrio.br", "34333840023", pe.encode("123"));
+		Usuario us4 = new Usuario(null, "Wagner Fragoso", "pedro.femea@gmail.com", "34333840023", pe.encode("123"));
 		us4.getTelefones().addAll(Arrays.asList("37716309", "86743921"));
 		
 		
@@ -80,5 +80,5 @@ public class DBService {
 		
 		
 		
-*/}
+}
 }

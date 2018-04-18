@@ -1,9 +1,12 @@
 package com.macuxi.camarao.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Temperatura;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.repositories.TemperaturaRepository;
 
 
@@ -13,6 +16,11 @@ public class TemperaturaService {
 	@Autowired
 	TemperaturaRepository repo;
 	
+	@Autowired
+	EmailService emailService;
+	
+	@Autowired
+	UsuarioService usuarioService;
 	
 	public  void generateTemperatura() {
 		Temperatura temperatura =  new Temperatura(null,(Math.random() *((33 - 28) + 1) + 28));
@@ -22,6 +30,10 @@ public class TemperaturaService {
 	
 	public Temperatura insert(Temperatura obj) {
 		obj.setId(null);
+		if(obj.getTemperatura()<=27 || obj.getTemperatura()>=34) {
+			List<Usuario> usuarios = usuarioService.findAll();		
+			emailService.sendOrderConfirmationEmail(obj,usuarios);
+		}
 		obj = repo.save(obj);		
 		return obj;
 	}
@@ -29,6 +41,12 @@ public class TemperaturaService {
 	public Temperatura findTemperatura() {		
 		Temperatura temperatura = repo.findFirstByOrderByIdDesc();
 		return temperatura;
+	}
+	
+	public  void generateTemperaturaForaDoPadrao() {
+		Temperatura temperatura =  new Temperatura(null,(Math.random() *((22 - 20) + 1) + 20));
+		this.insert(temperatura);
+		
 	}
 	
 

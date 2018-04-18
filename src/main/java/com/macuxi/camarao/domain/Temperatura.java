@@ -1,12 +1,14 @@
 package com.macuxi.camarao.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class Temperatura implements Serializable {
@@ -54,6 +56,17 @@ public class Temperatura implements Serializable {
 
 	public void setHoraMarcada(Date horaMarcada) {
 		this.horaMarcada = horaMarcada;
+	}
+	
+	@Override
+	public String toString() {		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		StringBuilder builder = new StringBuilder();	
+		builder.append(", Instante: ");
+		builder.append(sdf.format(getHoraMarcada()));
+		builder.append(", Temperatura registrada: ");
+		builder.append(getTemperatura());		
+		return builder.toString();
 	}
 
 }
