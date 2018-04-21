@@ -2,6 +2,7 @@ package com.macuxi.camarao.services;
 
 import java.util.List;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class TemperaturaService {
 	@Autowired
 	UsuarioService usuarioService;
 	
+	@Autowired
+	AndroidPushNotificationsService androidPushNotificationsService;
+	
 	public  void generateTemperatura() {
 		Temperatura temperatura =  new Temperatura(null,(Math.random() *((33 - 28) + 1) + 28));
 		this.insert(temperatura);
@@ -33,6 +37,12 @@ public class TemperaturaService {
 		if(obj.getTemperatura()<=27 || obj.getTemperatura()>=34) {
 			List<Usuario> usuarios = usuarioService.findAll();		
 			emailService.sendOrderConfirmationEmail(obj,usuarios);
+			try {
+				androidPushNotificationsService.send(obj.getTemperatura());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		obj = repo.save(obj);		
 		return obj;
