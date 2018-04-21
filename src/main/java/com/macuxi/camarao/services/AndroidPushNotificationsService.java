@@ -33,11 +33,14 @@ import org.springframework.http.HttpEntity;
 
 			JSONObject message = new JSONObject();
 			message.put("to", "/topics/all");
-			message.put("priority", "high");		
+			message.put("priority", "high");	
+			
 
 			JSONObject notification = new JSONObject();
 			notification.put("title", "Alerta de medição");
 			notification.put("body", "Temperatura atingiu o limite: " + medicao);
+			notification.put("sound","notification");
+			notification.put("vibrate", 1);
 
 			message.put("notification", notification);
 
