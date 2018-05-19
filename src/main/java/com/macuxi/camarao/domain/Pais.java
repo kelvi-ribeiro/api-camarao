@@ -1,48 +1,32 @@
 package com.macuxi.camarao.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Estado implements Serializable {
+public class Pais implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;	
 	private String nome;
-	private String uf;
-
-	@ManyToOne
-	@JoinColumn(name = "pais_id")
-	private Pais pais;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "estado")
-	private List<Cidade> cidades = new ArrayList<>();
-
-	public Estado() {
+	private String sigla;
+	
+	public Pais() {
 	}
 
-	public Estado(Integer id, String nome, String uf, Pais pais) {
+	public Pais(Integer id, String nome, String sigla) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.uf = uf;
-		this.pais = pais;		
+		this.sigla = sigla;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -59,28 +43,12 @@ public class Estado implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getUf() {
-		return uf;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-	public Pais getPais() {
-		return pais;
-	}
-
-	public void setPais(Pais pais) {
-		this.pais = pais;
-	}
-
-	public List<Cidade> getCidades() {
-		return cidades;
-	}
-
-	public void setCidades(List<Cidade> cidades) {
-		this.cidades = cidades;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
 	@Override
@@ -99,7 +67,7 @@ public class Estado implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Estado other = (Estado) obj;
+		Pais other = (Pais) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -107,5 +75,8 @@ public class Estado implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
+	
+	
 }

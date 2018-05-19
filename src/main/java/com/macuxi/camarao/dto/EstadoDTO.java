@@ -9,8 +9,9 @@ public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
 	private String nome;
+	private String uf;
+	private int idPais;
 
 	public EstadoDTO() {
 
@@ -19,6 +20,8 @@ public class EstadoDTO implements Serializable {
 	public EstadoDTO(Estado obj) {
 		id = obj.getId();
 		nome = obj.getNome();
+		uf = obj.getUf();
+		idPais = obj.getPais().getId();
 	}
 
 	public Integer getId() {
@@ -35,6 +38,22 @@ public class EstadoDTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public int getIdPais() {
+		return idPais;
+	}
+
+	public void setIdPais(int idPais) {
+		this.idPais = idPais;
 	}
 
 }
