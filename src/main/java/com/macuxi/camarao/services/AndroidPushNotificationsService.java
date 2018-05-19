@@ -1,8 +1,7 @@
 package com.macuxi.camarao.services;
 
 	import java.io.IOException;
-import java.util.ArrayList;
-	import java.util.concurrent.CompletableFuture;
+import java.text.SimpleDateFormat;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -12,11 +11,9 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.http.HttpEntity;
-	import org.springframework.http.client.ClientHttpRequestInterceptor;
-	import org.springframework.scheduling.annotation.Async;
-	import org.springframework.stereotype.Service;
-	import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
+
+import com.macuxi.camarao.domain.Temperatura;
 	 
 	@Service
 	public class AndroidPushNotificationsService {
@@ -24,7 +21,7 @@ import org.springframework.http.HttpEntity;
 		private static final String FIREBASE_SERVER_KEY = "AAAAc9_DTqY:APA91bFePnvsXwDUuuj_x4Kdj8ylAbY-GFygzGAGn8Q6262O_lTjLS0NWuOj-rLNd-ZljOhO4Y9fYVO6dgP7F0hswqddrsFOOtQcZguTX7vGwfoAHcsaGWG7DB3qjn6qsH2EG6QHJEwG";
 		private static final String FIREBASE_API_URL = "https://fcm.googleapis.com/fcm/send";		
 		
-		public void send(double medicao) throws JSONException {		
+		public void send(Temperatura temperatura) throws JSONException {		
 			
 			HttpClient client = HttpClientBuilder.create().build();
 			HttpPost post = new HttpPost(FIREBASE_API_URL);
@@ -35,12 +32,15 @@ import org.springframework.http.HttpEntity;
 			message.put("to", "/topics/all");
 			message.put("priority", "high");	
 			
-
+			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+			
 			JSONObject notification = new JSONObject();
-			notification.put("title", "Alerta de medição");
-			notification.put("body", "Temperatura atingiu o limite: " + medicao);
+			notification.put("title", "Alerta de medição");			
+			notification.put("body", "Temperatura atingiu o limite: " 
+			+ temperatura.getTemperatura() + " No Instante: " + fmt.format(temperatura.getHoraMarcada()));
 			notification.put("sound","notification");
 			notification.put("vibrate", 1);
+			notification.put("color", "#FF0000");
 
 			message.put("notification", notification);
 
