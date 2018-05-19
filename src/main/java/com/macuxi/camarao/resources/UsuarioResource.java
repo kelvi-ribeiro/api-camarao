@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.macuxi.camarao.domain.Usuario;
+import com.macuxi.camarao.dto.MensagemNotificacaoDTO;
 import com.macuxi.camarao.dto.UsuarioDTO;
 import com.macuxi.camarao.dto.UsuarioNewDTO;
+import com.macuxi.camarao.services.AndroidPushNotificationsService;
 import com.macuxi.camarao.services.UsuarioService;
 
 @RestController
@@ -29,6 +32,9 @@ public class UsuarioResource {
 	
 	@Autowired
 	private UsuarioService service;
+	
+	@Autowired
+	private AndroidPushNotificationsService androidPushNotificationsService;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
@@ -90,5 +96,15 @@ public class UsuarioResource {
 	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
 		URI uri = service.uploadProfilePicture(file);
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/mensagem", method=RequestMethod.POST)
+	public void sendMessage(@Valid @RequestBody MensagemNotificacaoDTO objDto) {		
+		try {
+			androidPushNotificationsService.sendMessage(objDto);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

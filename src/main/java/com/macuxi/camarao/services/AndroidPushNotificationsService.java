@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Temperatura;
+import com.macuxi.camarao.dto.MensagemNotificacaoDTO;
 	 
 	@Service
 	public class AndroidPushNotificationsService {
@@ -38,6 +39,42 @@ import com.macuxi.camarao.domain.Temperatura;
 			notification.put("title", "Alerta de medição");			
 			notification.put("body", "Temperatura atingiu o limite: " 
 			+ temperatura.getTemperatura() + " No Instante: " + fmt.format(temperatura.getHoraMarcada()));
+			notification.put("sound","notification");
+			notification.put("vibrate", 1);
+			notification.put("color", "#FF0000");
+
+			message.put("notification", notification);
+
+			post.setEntity(new StringEntity(message.toString(), "UTF-8"));
+			HttpResponse response = null;
+			try {
+				response = client.execute(post);
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		}
+		
+public void sendMessage(MensagemNotificacaoDTO mensagemNotificacaoDTO) throws JSONException {		
+			
+			HttpClient client = HttpClientBuilder.create().build();
+			HttpPost post = new HttpPost(FIREBASE_API_URL);
+			post.setHeader("Content-type", "application/json");
+			post.setHeader("Authorization", "key=" + FIREBASE_SERVER_KEY);
+
+			JSONObject message = new JSONObject();
+			message.put("to", "/topics/all");
+			message.put("priority", "high");	
+			
+			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+			
+			JSONObject notification = new JSONObject();
+			notification.put("title", mensagemNotificacaoDTO.getTitulo());			
+			notification.put("body", mensagemNotificacaoDTO.getMensagem()
+					+ " Ás " + fmt.format(mensagemNotificacaoDTO.getHoraMarcada()));
 			notification.put("sound","notification");
 			notification.put("vibrate", 1);
 			notification.put("color", "#FF0000");
