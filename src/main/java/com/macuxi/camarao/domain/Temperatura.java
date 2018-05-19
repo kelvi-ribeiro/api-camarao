@@ -62,9 +62,9 @@ public class Temperatura implements Serializable {
 	public String toString() {		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 		StringBuilder builder = new StringBuilder();	
-		builder.append(", Instante: ");
+		builder.append("Instante: ");
 		builder.append(sdf.format(getHoraMarcada()));
-		builder.append(", Temperatura registrada: ");
+		builder.append("Temperatura registrada: ");
 		builder.append(getTemperatura());		
 		return builder.toString();
 	}

@@ -36,9 +36,10 @@ public class TemperaturaService {
 		obj.setId(null);
 		if(obj.getTemperatura()<=27 || obj.getTemperatura()>=34) {
 			List<Usuario> usuarios = usuarioService.findAll();		
-			emailService.sendOrderConfirmationEmail(obj,usuarios);
+			//emailService.sendOrderConfirmationHtmlEmail(obj, usuarios);
+			emailService.sendOrderConfirmationEmail(obj, usuarios);
 			try {
-				androidPushNotificationsService.send(obj.getTemperatura());
+				androidPushNotificationsService.send(obj);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

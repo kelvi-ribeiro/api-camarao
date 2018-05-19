@@ -92,9 +92,13 @@ public abstract class AbstractEmailService implements EmailService {
 			throws MessagingException {
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		MimeMessageHelper mmh = new MimeMessageHelper(mimeMessage, true);		
+		this.emails = new String[usuarios.size()];			 
 		usuarios.forEach(usuario -> {
-			//this.usuariosEmail += usuario.getEmail() + ",";
+		this.emails[this.contador] = usuario.getEmail();
+		this.contador++;
+			
 		});
+		this.contador = 0;
 		mmh.setTo(this.emails);
 		mmh.setFrom(sender);
 		mmh.setSubject("Alerta de medição: " + obj.getTemperatura());
