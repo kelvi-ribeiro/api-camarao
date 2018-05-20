@@ -13,8 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.macuxi.camarao.domain.Mensagem;
 import com.macuxi.camarao.domain.Temperatura;
-import com.macuxi.camarao.dto.MensagemNotificacaoDTO;
 	 
 	@Service
 	public class AndroidPushNotificationsService {
@@ -58,7 +58,7 @@ import com.macuxi.camarao.dto.MensagemNotificacaoDTO;
 			}		
 		}
 		
-public void sendMessage(MensagemNotificacaoDTO mensagemNotificacaoDTO) throws JSONException {		
+public void sendMessage(Mensagem mensagem) throws JSONException {		
 			
 			HttpClient client = HttpClientBuilder.create().build();
 			HttpPost post = new HttpPost(FIREBASE_API_URL);
@@ -72,9 +72,9 @@ public void sendMessage(MensagemNotificacaoDTO mensagemNotificacaoDTO) throws JS
 			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
 			
 			JSONObject notification = new JSONObject();
-			notification.put("title", mensagemNotificacaoDTO.getTitulo());			
-			notification.put("body", mensagemNotificacaoDTO.getMensagem()
-					+ " Ás " + fmt.format(mensagemNotificacaoDTO.getHoraMarcada()));
+			notification.put("title", mensagem.getTitulo());			
+			notification.put("body", mensagem.getMensagem()
+					+ " Ás " + fmt.format(mensagem.getHoraMarcada()));
 			notification.put("sound","notification");
 			notification.put("vibrate", 1);
 			notification.put("color", "#FF0000");
