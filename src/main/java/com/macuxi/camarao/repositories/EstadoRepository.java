@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.macuxi.camarao.domain.Estado;
+import com.macuxi.camarao.domain.Tanque;
 
 @Repository
-public interface EstadoRepository extends JpaRepository<Estado, Integer> {
+public interface EstadoRepository extends JpaRepository<Tanque, Integer> {
 	
 	@Transactional(readOnly=true)
-	public List<Estado> findAllByOrderByNome();
+	public List<Tanque> findAllByOrderByNome();
 
 }

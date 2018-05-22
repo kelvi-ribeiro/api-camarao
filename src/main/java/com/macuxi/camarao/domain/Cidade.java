@@ -20,12 +20,12 @@ public class Cidade implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="estado_id")
-	private Estado estado;
+	private Tanque estado;
 	
 	public Cidade() {
 	}
 
-	public Cidade(Integer id, String nome, Estado estado) {
+	public Cidade(Integer id, String nome, Tanque estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -48,11 +48,11 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
+	public Tanque getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(Tanque estado) {
 		this.estado = estado;
 	}
 
