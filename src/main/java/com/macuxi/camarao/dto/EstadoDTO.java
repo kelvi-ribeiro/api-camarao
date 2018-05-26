@@ -2,7 +2,7 @@ package com.macuxi.camarao.dto;
 
 import java.io.Serializable;
 
-import com.macuxi.camarao.domain.Tanque;
+import com.macuxi.camarao.domain.Estado;
 
 public class EstadoDTO implements Serializable {
 
@@ -17,7 +17,7 @@ public class EstadoDTO implements Serializable {
 
 	}
 
-	public EstadoDTO(Tanque obj) {
+	public EstadoDTO(Estado obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		uf = obj.getUf();

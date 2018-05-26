@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.macuxi.camarao.domain.Cidade;
-import com.macuxi.camarao.domain.Tanque;
+import com.macuxi.camarao.domain.Estado;
 import com.macuxi.camarao.dto.CidadeDTO;
 import com.macuxi.camarao.dto.EstadoDTO;
 import com.macuxi.camarao.services.CidadeService;
@@ -29,7 +29,7 @@ public class EstadoResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<EstadoDTO>> findAll() {
-		List<Tanque> list = service.findAll();
+		List<Estado> list = service.findAll();
 		List<EstadoDTO> listDto = list.stream().map(obj -> new EstadoDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
