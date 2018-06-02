@@ -37,7 +37,7 @@ import org.springframework.stereotype.Service;
             while (true) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        temperaturaService.generateTemperatura(); 
+                        //temperaturaService.generateTemperatura(); 
                         phService.generatePh();
                         salinidadeService.generateSalinidade();
                         amoniaTotalService.generateAmoniaTotal();
