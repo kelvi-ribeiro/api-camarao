@@ -33,12 +33,11 @@ import com.macuxi.camarao.domain.Temperatura;
 			message.put("to", "/topics/all");
 			message.put("priority", "high");	
 			
-			SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+			SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss"); 
 			
 			JSONObject notification = new JSONObject();
-			notification.put("title", "Alerta de medição");			
-			notification.put("body", "Temperatura atingiu o limite: " 
-			+ temperatura.getTemperatura() + " No Instante: " + fmt.format(temperatura.getHoraMarcada()));
+			notification.put("title", "Limite de Temperatura atingido");			
+			notification.put("body", "Temperatura atingida: " + String.format("%.2f", temperatura.getTemperatura()) + " Ás: " + fmt.format(temperatura.getHoraMarcada()));
 			notification.put("sound","notification");
 			notification.put("vibrate", 1);
 			notification.put("color", "#FF0000");
@@ -73,8 +72,8 @@ public void sendMessage(Mensagem mensagem) throws JSONException {
 			
 			JSONObject notification = new JSONObject();
 			notification.put("title", mensagem.getTitulo());			
-			notification.put("body", mensagem.getMensagem()
-					+ " Ás " + fmt.format(mensagem.getHoraMarcada()));
+			notification.put("body", mensagem.getMensagem());
+					
 			notification.put("sound","notification");
 			notification.put("vibrate", 1);
 			notification.put("color", "#FF0000");
