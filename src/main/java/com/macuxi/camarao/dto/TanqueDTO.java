@@ -9,8 +9,9 @@ import com.macuxi.camarao.domain.Usuario;
 
 public class TanqueDTO {
 	private int id;
-	private String longitude;
-	private String latitude;
+	private String nome;
+	private Double longitude;
+	private Double latitude;
 	private String horaRegistrado;
 	private int usuarioId;
 	private String nomeUsuario;
@@ -27,6 +28,7 @@ public class TanqueDTO {
 	public TanqueDTO(Tanque obj) {
 		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		this.id = obj.getId();
+		this.nome = obj.getNome();
 		this.longitude = obj.getLongitude();
 		this.latitude = obj.getLatitude();
 		this.horaRegistrado = fmt.format(obj.getHoraRegistrado());
@@ -38,13 +40,14 @@ public class TanqueDTO {
 		Usuario usuario = new Usuario();
 		usuario.setId(obj.getUsuarioId());
 		Tanque tanque = new Tanque();
+		tanque.setNome(obj.getNome());
 		tanque.setLongitude(obj.getLongitude());
 		tanque.setLatitude(obj.getLatitude());
 		tanque.setUsuario(usuario);
 		return tanque;
 
 	}
-	
+
 	public static List<TanqueDTO> returnListPojo(List<Tanque> list) {
 		List<TanqueDTO> listDto = new ArrayList<TanqueDTO>();
 		list.stream().forEach(x -> {
@@ -61,20 +64,28 @@ public class TanqueDTO {
 		this.id = id;
 	}
 
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getHoraRegistrado() {
