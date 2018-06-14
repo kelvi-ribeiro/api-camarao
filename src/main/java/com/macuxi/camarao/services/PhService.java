@@ -1,6 +1,9 @@
 package com.macuxi.camarao.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Ph;
@@ -28,5 +31,12 @@ public class PhService {
 		Ph ph = repo.findFirstByOrderByIdDesc();
 		return ph;
 	}
+	
+	public Page<Ph> findPhPageable(Integer page) {
+		
+		PageRequest pageRequest = new PageRequest(page, 20, Direction.valueOf("DESC"),"id");		
+		return repo.findAll(pageRequest);
+	}
+
 	
 }

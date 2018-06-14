@@ -9,7 +9,8 @@ import com.macuxi.camarao.domain.Ph;
 @Repository
 public interface PhRepository extends JpaRepository<Ph, Integer> {
 	
-	@Transactional(readOnly=true)	
+	@Transactional(readOnly = true)
 	Ph findFirstByOrderByIdDesc();
+	
 
 }

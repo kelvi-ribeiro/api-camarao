@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.macuxi.camarao.domain.Tanque;
-import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.dto.TanqueDTO;
 import com.macuxi.camarao.services.TanqueService;
 
