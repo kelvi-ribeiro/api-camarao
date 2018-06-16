@@ -12,6 +12,7 @@ public class MensagemDTO {
 	private String horaMarcada;
 	private int clienteId;
 	private String nomeCliente;
+	private String urlFoto;
 
 	public MensagemDTO() {
 		
@@ -30,6 +31,7 @@ public class MensagemDTO {
 		horaMarcada = fmt.format(obj.getHoraMarcada());
 		clienteId = obj.getCliente().getId();
 		nomeCliente = obj.getCliente().getNome();
+		urlFoto = obj.getCliente().getUrlFoto();
 	}
 
 	public static Mensagem returnEntity(MensagemDTO obj) {
@@ -87,5 +89,14 @@ public class MensagemDTO {
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+	
 
 }
