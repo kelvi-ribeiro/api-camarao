@@ -33,10 +33,12 @@ public class Usuario implements Serializable {
 	@Column(unique = true)
 	private String email;
 
-	private String cpf;	
+	private String cpf;
 
 	@JsonIgnore
 	private String senha;
+
+	private String urlFoto;
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -121,6 +123,14 @@ public class Usuario implements Serializable {
 
 	public Set<String> getTelefones() {
 		return telefones;
+	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
 	}
 
 	public void setTelefones(Set<String> telefones) {

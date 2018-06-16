@@ -3,6 +3,7 @@ package com.macuxi.camarao.services;
 import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,14 +16,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.macuxi.camarao.domain.Cidade;
-import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.domain.Endereco;
+import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.domain.enums.Perfil;
 import com.macuxi.camarao.dto.UsuarioDTO;
 import com.macuxi.camarao.dto.UsuarioNewDTO;
 import com.macuxi.camarao.repositories.CidadeRepository;
-import com.macuxi.camarao.repositories.UsuarioRepository;
 import com.macuxi.camarao.repositories.EnderecoRepository;
+import com.macuxi.camarao.repositories.UsuarioRepository;
 import com.macuxi.camarao.security.UserSS;
 import com.macuxi.camarao.services.exceptions.AuthorizationException;
 import com.macuxi.camarao.services.exceptions.DataIntegrityException;
@@ -54,6 +55,8 @@ public class UsuarioService {
 
 	@Autowired
 	private S3Service s3Service;
+	
+	private Random rand = new Random();
 
 	public Usuario find(Integer id) {
 
@@ -150,13 +153,32 @@ public class UsuarioService {
 		}
 
 		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
-		jpgImage = imageService.cropSquare(jpgImage);
-		jpgImage = imageService.resize(jpgImage, size);
+		
 
-		String fileName = prefix + user.getId() + ".jpg";
-
+		String fileName =  "id="+ user.getId() + "&rand=" + this.newStringRandom() + ".jpg";
+		Usuario usuario =  repo.findOne(user.getId());		
+		usuario.setUrlFoto(fileName);
+		repo.save(usuario);
 		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 
 	}
 
+	private char randomChar() {
+		int opt = rand.nextInt(3);
+		if (opt == 0) { // gera um digito
+			return (char) (rand.nextInt(10) + 48);
+		} else if (opt == 1) { // gera letra maiuscula
+			return (char) (rand.nextInt(26) + 65);
+		} else { // gera letra minuscula
+			return (char) (rand.nextInt(26) + 97);
+		}
+
+	}
+	private String newStringRandom() {
+		char[] vet = new char[10];
+		for (int i=0; i<10; i++) {
+			vet[i] = randomChar();
+		}
+		return new String(vet);
+	}
 }
