@@ -34,7 +34,7 @@ public class OxigenioDissolvidoService {
 	}
 
 	public Page<OxigenioDissolvido> findPageable(Integer page) {
-		PageRequest pageRequest = new PageRequest(page, 2400, Direction.valueOf("DESC"), "id");
+		PageRequest pageRequest = new PageRequest(page, 200, Direction.valueOf("DESC"), "id");
 		return repo.findAll(pageRequest);
 	}
 
