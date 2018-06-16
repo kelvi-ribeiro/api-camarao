@@ -1,6 +1,9 @@
 package com.macuxi.camarao.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Salinidade;
@@ -26,6 +29,11 @@ public class SalinidadeService {
 	public Salinidade findSalinidade() {
 		Salinidade salinidade = repo.findFirstByOrderByIdDesc();
 		return salinidade;
+	}
+	
+	public Page<Salinidade> findPageable(Integer page) {
+		PageRequest pageRequest = new PageRequest(page, 2400, Direction.valueOf("DESC"), "id");
+		return repo.findAll(pageRequest);
 	}
 
 }

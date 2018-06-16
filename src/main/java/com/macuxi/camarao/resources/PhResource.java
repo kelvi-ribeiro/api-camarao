@@ -24,12 +24,9 @@ public class PhResource {
 		return ResponseEntity.ok().body(ph);
 	}
 
-	@RequestMapping(value="/paginada",method=RequestMethod.GET)
-	public ResponseEntity<Page<Ph>> findPage(	 
-			
-			@RequestParam(value="page",defaultValue="0")Integer page){
-				
-		Page<Ph> list = phService.findPhPageable(page);		
+	@RequestMapping(value = "/paginada", method = RequestMethod.GET)
+	public ResponseEntity<Page<Ph>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page) {
+		Page<Ph> list = phService.findPageable(page);
 		return ResponseEntity.ok().body(list);
 	}
 }

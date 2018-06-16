@@ -10,33 +10,31 @@ import com.macuxi.camarao.domain.Ph;
 import com.macuxi.camarao.repositories.PhRepository;
 
 @Service
-public class PhService {	
-	
+public class PhService {
+
 	@Autowired
-	PhRepository repo;	
-	
-	public  void generatePh() {
-		Ph ph =  new Ph(null,(Math.random() *((8.3 - 7.8) + 1) + 7.8));
+	PhRepository repo;
+
+	public void generatePh() {
+		Ph ph = new Ph(null, (Math.random() * ((8.3 - 7.8) + 1) + 7.8));
 		this.insert(ph);
-		
+
 	}
-	
+
 	public Ph insert(Ph obj) {
 		obj.setId(null);
-		obj = repo.save(obj);		
+		obj = repo.save(obj);
 		return obj;
 	}
-	
-	public Ph findPh() {		
+
+	public Ph findPh() {
 		Ph ph = repo.findFirstByOrderByIdDesc();
 		return ph;
 	}
-	
-	public Page<Ph> findPhPageable(Integer page) {
-		
-		PageRequest pageRequest = new PageRequest(page, 20, Direction.valueOf("DESC"),"id");		
+
+	public Page<Ph> findPageable(Integer page) {
+		PageRequest pageRequest = new PageRequest(page, 2400, Direction.valueOf("DESC"), "id");
 		return repo.findAll(pageRequest);
 	}
 
-	
 }
