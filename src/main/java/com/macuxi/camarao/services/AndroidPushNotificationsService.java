@@ -36,7 +36,7 @@ import com.macuxi.camarao.domain.Temperatura;
 			SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss"); 
 			
 			JSONObject notification = new JSONObject();
-			notification.put("title", "Limite de Temperatura atingido");			
+			notification.put("title", "Limite de Temperatura atingido no tanque Macuxi");			
 			notification.put("body", "Temperatura atingida: " + String.format("%.2f", temperatura.getTemperatura()) + " Ás: " + fmt.format(temperatura.getHoraMarcada()));
 			notification.put("sound","notification");
 			notification.put("vibrate", 1);
