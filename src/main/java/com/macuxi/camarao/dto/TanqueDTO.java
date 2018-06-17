@@ -15,6 +15,7 @@ public class TanqueDTO {
 	private String horaRegistrado;
 	private int usuarioId;
 	private String nomeUsuario;
+	private String urlFotoUsuario;
 
 	public TanqueDTO() {
 
@@ -34,6 +35,7 @@ public class TanqueDTO {
 		this.horaRegistrado = fmt.format(obj.getHoraRegistrado());
 		this.usuarioId = obj.getUsuario().getId();
 		this.nomeUsuario = obj.getUsuario().getNome();
+		this.urlFotoUsuario = obj.getUsuario().getUrlFoto();
 	}
 
 	public static Tanque returnEntity(TanqueDTO obj) {
@@ -111,5 +113,14 @@ public class TanqueDTO {
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
+
+	public String getUrlFotoUsuario() {
+		return urlFotoUsuario;
+	}
+
+	public void setUrlFotoUsuario(String urlFotoUsuario) {
+		this.urlFotoUsuario = urlFotoUsuario;
+	}
+	
 
 }
