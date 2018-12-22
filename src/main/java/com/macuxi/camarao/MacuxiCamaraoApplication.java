@@ -19,7 +19,7 @@ public class MacuxiCamaraoApplication implements CommandLineRunner {
 	 
 	@Override
 	public void run (String... args)throws Exception{
-		///backgroundService.doInBackground();
+		backgroundService.doInBackground();
 		
 	}
 	
