@@ -1,44 +1,53 @@
 package com.macuxi.camarao.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.Digits;
 
 @Entity
 public class Tanque implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
-	private String codigo;
 
-	@OneToOne
-	private Arduino arduino;
+	private String nome;
+	
+	
+	private Double longitude;
+	
+	
+	private Double latitude;
+	
+	@Column(name = "hora_registrado")
+	private Date horaRegistrado;
 
 	@ManyToOne
-	@JoinColumn(name = "usuario_id", nullable = false)
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
 	public Tanque() {
+		this.horaRegistrado = new Date(System.currentTimeMillis());
 	}
 
-	public Tanque(Integer id, String nome, String codigo, Usuario usuario) {
+	public Tanque(Integer id, Double longitude, Double latitude, String nome) {
 		super();
 		this.id = id;
+		this.longitude = longitude;
+		this.latitude = latitude;
 		this.nome = nome;
-		this.codigo = codigo;
-		this.usuario = usuario;
+		this.horaRegistrado = new Date(System.currentTimeMillis());
 	}
 
 	public Integer getId() {
@@ -49,6 +58,22 @@ public class Tanque implements Serializable {
 		this.id = id;
 	}
 
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -57,20 +82,12 @@ public class Tanque implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public Date getHoraRegistrado() {
+		return horaRegistrado;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public Arduino getArduino() {
-		return arduino;
-	}
-
-	public void setArduino(Arduino arduino) {
-		this.arduino = arduino;
+	public void setHoraRegistrado(Date horaRegistrado) {
+		this.horaRegistrado = horaRegistrado;
 	}
 
 	public Usuario getUsuario() {
@@ -79,31 +96,6 @@ public class Tanque implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Tanque other = (Tanque) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
 	}
 
 }

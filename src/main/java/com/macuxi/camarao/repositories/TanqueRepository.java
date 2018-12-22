@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.macuxi.camarao.domain.Tanque;
 
 @Repository
-public interface TanqueRepository extends JpaRepository<Tanque, Integer> {
-
+public interface TanqueRepository extends JpaRepository<Tanque, Integer> {	
+	
 }

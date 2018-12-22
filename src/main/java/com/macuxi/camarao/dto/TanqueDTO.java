@@ -1,47 +1,61 @@
 package com.macuxi.camarao.dto;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.macuxi.camarao.domain.Tanque;
 import com.macuxi.camarao.domain.Usuario;
 
 public class TanqueDTO {
 	private int id;
 	private String nome;
-	private String codigo;
+	private Double longitude;
+	private Double latitude;
+	private String horaRegistrado;
 	private int usuarioId;
-	private int arduinoId;
-	private String arduinoNome;
+	private String nomeUsuario;
+	private String urlFotoUsuario;
 
 	public TanqueDTO() {
 
 	}
 
-	public TanqueDTO(int id, String nome, String codigo, int usuarioId, String arduinoNome, int arduinoId) {
-		this.id = id;
-		this.nome = nome;
-		this.codigo = codigo;
-		this.usuarioId = usuarioId;
-		this.arduinoId = arduinoId;
-	}
+	// public TanqueDTO(String longitude, String latitude, String horaRegistrado,) {
+	// this.longitude = longitude;
+	// this.mensagem = mensagem;
+	// }
 
 	public TanqueDTO(Tanque obj) {
+		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		this.id = obj.getId();
 		this.nome = obj.getNome();
-		this.codigo = obj.getCodigo();
-		this.arduinoId = obj.getArduino() != null ? obj.getArduino().getId():0; 
-		this.arduinoNome = obj.getArduino() != null ? obj.getArduino().getNome():null;
-		this.usuarioId = obj.getUsuario() != null  ? obj.getArduino().getId():null;
-
+		this.longitude = obj.getLongitude();
+		this.latitude = obj.getLatitude();
+		this.horaRegistrado = fmt.format(obj.getHoraRegistrado());
+		this.usuarioId = obj.getUsuario().getId();
+		this.nomeUsuario = obj.getUsuario().getNome();
+		this.urlFotoUsuario = obj.getUsuario().getUrlFoto();
 	}
 
 	public static Tanque returnEntity(TanqueDTO obj) {
 		Usuario usuario = new Usuario();
 		usuario.setId(obj.getUsuarioId());
 		Tanque tanque = new Tanque();
-		tanque.setId(obj.getId());
-		tanque.setCodigo(obj.getCodigo());
+		tanque.setNome(obj.getNome());
+		tanque.setLongitude(obj.getLongitude());
+		tanque.setLatitude(obj.getLatitude());
 		tanque.setUsuario(usuario);
 		return tanque;
 
+	}
+
+	public static List<TanqueDTO> returnListPojo(List<Tanque> list) {
+		List<TanqueDTO> listDto = new ArrayList<TanqueDTO>();
+		list.stream().forEach(x -> {
+			listDto.add(new TanqueDTO(x));
+		});
+		return listDto;
 	}
 
 	public int getId() {
@@ -52,6 +66,22 @@ public class TanqueDTO {
 		this.id = id;
 	}
 
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -60,12 +90,12 @@ public class TanqueDTO {
 		this.nome = nome;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getHoraRegistrado() {
+		return horaRegistrado;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setHoraRegistrado(String horaRegistrado) {
+		this.horaRegistrado = horaRegistrado;
 	}
 
 	public int getUsuarioId() {
@@ -76,20 +106,21 @@ public class TanqueDTO {
 		this.usuarioId = usuarioId;
 	}
 
-	public String getArduinoNome() {
-		return arduinoNome;
+	public String getNomeUsuario() {
+		return nomeUsuario;
 	}
 
-	public void setArduinoNome(String arduinoNome) {
-		this.arduinoNome = arduinoNome;
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
 	}
 
-	public int getArduinoId() {
-		return arduinoId;
+	public String getUrlFotoUsuario() {
+		return urlFotoUsuario;
 	}
 
-	public void setArduinoId(int arduinoId) {
-		this.arduinoId = arduinoId;
+	public void setUrlFotoUsuario(String urlFotoUsuario) {
+		this.urlFotoUsuario = urlFotoUsuario;
 	}
+	
 
 }
