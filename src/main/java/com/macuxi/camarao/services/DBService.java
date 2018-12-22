@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.macuxi.camarao.domain.Cidade;
 import com.macuxi.camarao.domain.Endereco;
-import com.macuxi.camarao.domain.Tanque;
 import com.macuxi.camarao.domain.Pais;
 import com.macuxi.camarao.domain.Usuario;
 import com.macuxi.camarao.domain.enums.Perfil;

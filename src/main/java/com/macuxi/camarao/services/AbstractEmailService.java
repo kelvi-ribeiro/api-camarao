@@ -50,7 +50,7 @@ public abstract class AbstractEmailService implements EmailService {
 		this.contador = 0;
 		sm.setTo(this.emails);
 		sm.setFrom(sender);
-		sm.setSubject("Alerta de medição: " + obj.getTemperatura());
+		sm.setSubject("Tanque Macuxi:Alerta de medição: " + obj.getTemperatura());
 		sm.setSentDate(new Date(System.currentTimeMillis()));
 		sm.setText(obj.toString());
 		return sm;
