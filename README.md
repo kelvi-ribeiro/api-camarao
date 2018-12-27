@@ -1,17 +1,106 @@
-# prj-macuxi-camarao-backend
-API (Application Programming Interface) que é usada para gerar as medições das propriedades que um tanque camarão possui(Amonia Total, Nitrato, Nitrito, Oxigênio Dissolvido, Salinidade, Temperatura e Transparência ) automaticamente através de rotinas e CRUD de Usuários, Mensagens e Tanques. 
+# Aplicativo do Camarão
 
-Como é um protótipo, foi feita a integração com o Arduino apenas com propriedade de Temperatura, e o [Projeto Arduino](https://github.com/kelvi-ribeiro/prj-arduino-camarao), porém, você não precisa de um Arduino para executar esta API, caso deseje um integração com Arduino, apenas retire a chamada do método que gera a Propriedade de Temperatura no arquivo de com.macuxi.camarao.services.BackGroundService, no projeto Arduino, basta configura-lo que ele enviará os dados de temperatura para esta API. Também existe um [Projeto Frontend](https://github.com/kelvi-ribeiro/app-camarao) que é integrado com essa API.
+Aplicativo do camarão foi um desafio na disciplina de Tópicos de Programação orientado pelo professor [Thiago Souza](https://www.facebook.com/thiago.silvadesouza.33) na Instituicação [Unigranrio](http://www.unigranrio.com.br). Essa aplicação tem responsabilidade de ajudar os funcionários a gerenciar os tanque de camarão, os camarões são frágeis e a água precisa estar devidamente tratada para o crescimento saudável dos mesmos, sendo assim, algumas propriedades da água precisam estar em constante monitoramento, as  principais propriedades são: Amônia Total, Nitrato, Nitrito, Oxigênio Dissolvido, PH, Salinidade, Temperatura e Transparência. Para isso, foi necessário desenvolver um projeto Com  [Arduino](https://www.google.com/search?q=arduino&oq=Arduin&aqs=chrome.0.0j69i60l3j69i57j0.2365j0j7&sourceid=chrome&ie=UTF-8) que de alguma forma pudesse comunicar com os dispositivos móveis dos funcionários. Tal arquitetura foi pensada para essa solução: 
 
-Primeiros Passos
-Após clonar o Projeto, basta que você baixe as dependências com o Maven e crie um Banco de Dados chamado bd_camarao e dentro do arquivo de configurações do projeto, insira as credenciais do seu SGBD.
+![arranjo](https://i.imgur.com/Oah6LgX.jpg)
 
-## Autores
+# Principais tecnologias utilizadas
+  - Ionic
+  - NPM
+  - Node
+  - API REST JAVA
+  - Arduino
+  - Sensor de temperatura
+  - SGBD MySQL
 
-* **Kelvi Ribeiro** - *Initial work* - [PurpleBooth](https://github.com/kelvi-ribeiro)
+# Funcionalidades
+  - Listagem em tempo real de todas as propriedades citadas
+  - Gráficos ilustrativos  em tempo real de todas as propriedades citadas
+  - Gerenciamento de tanques (CRUD)
+  - Localização de Tanques (Aplicação usa o GPS para a localização de todos os tanques cadastrados)
+  - Gerenciamento de Funcionários habilitado apenas para gerentes (CRUD)
+  - Gerenciamento de Avisos ou Mensagens, uma espécie de quadro de avisos (CRUD).
+  - Disparo de E-mails e Notificação Via Push Notification do Firebase para todos os funcionário ao sistema checar que um propriedade passou do seu range limite
+  - Disparo de E-mails e Notificação Via Push Notification do Firebase ao envio de avisos
+  - Tela de Ajuda com tradução para mais dois idiomas, além do português
+  - Possibilidade de envio de fotos do usuário, através da camera e galeria
+
+### Link dos Projetos
+-[API REST JAVA](https://github.com/kelvi-ribeiro/api-camarao)
+-[Projeto Ionic](https://github.com/kelvi-ribeiro/app-camarao)
+-[Projeto Arduino](https://github.com/kelvi-ribeiro/prj-arduino-camarao)
+
+### Instalação
+
+É necessário ter instalado na máquina, Ionic 3, NPM e o Node, Java 1.8 e SGBD MySQL.
+
+##### API E BANCO
+
+- Crie um banco chamado bd_camarao
+- Vá em api-camarao/src/main/resources/application-dev.properties e troque as credenciais do SGBD e do seu E-mail.
+- Agora é só ligar a API executando o seguinte arquivo api-camarao/src/main/java/com/macuxi/camarao/MacuxiCamaraoApplication.java
+
+##### Aplicativo Ionic
+
+- Clone o [Projeto](https://github.com/kelvi-ribeiro/app-camarao)
+- Com o terminal, vá ao diretório, use o comando "cd" para isso, ao chegar no diretório do app-camarao, execute o comando "npm install" para instalar todas as dependências do projeto
+- Após a finalização do comando "npm install", execute o comando "ionic serve" para subir a aplicação 
+- Agora é só logar na aplicação, as credenciais são: ("kelvi.ribeiro@macuxi.com" para o email) e ("123" para a senha)
+- É possível possível ligar a perspectiva de dispositível móvel, Se estiver no Google Chrome, é só apertar a tecla "f12"  
+e clicar no ícone de celular. Lembrando que a funcionalidade de Localizar não funciona se estiver sendo executada no Chrome, para isso, é necessário gerar o APK do aplicativo para ser testado no celular de fato
+
+##### Aplicação Arduino
+- Não foi possível criar o tutorial para a integração com arduino, pois no momento, estou sem os equipamentos necessário para isso, o [Projeto Arduino](https://github.com/kelvi-ribeiro/prj-arduino-camarao) já está configurado para isso,  basta você preparar o seu Arduino e os sensores e ligar a aplicação, única coisa que você deve se certificar, é se está apontando para o local correto no arquivo prj-arduino-camarao/src/Serial/SerialRxTx.java, configure a variável API_TEMPERATURA_URL para o endpoint correto da [API Java](https://github.com/kelvi-ribeiro/api-camarao) 
+- Futuramente, irei colocar uma melhor explicação, talvez até com um vídeo para facilitar na parte de configurar o Arduino
+
+## Imagens do aplicativo:
+
+##### Tela de Login:
+
+![tela-login](https://i.imgur.com/mfoS5JK.png)
+
+#####  Tela Principal de listagem de medições:
+
+##### ![tela-principal](https://i.imgur.com/9rFE22W.png[/img)
+
+##### Side Menu(Menu Lateral):
+
+![side-menu](https://i.imgur.com/2YvQNdx.png[/img)
+
+##### Tela de relatório completo:
+
+![tela-relatorio](https://i.imgur.com/RolNt8x.png)
+
+##### Tela de Listagem de avisos:
+
+![tela-avisos](https://i.imgur.com/3I3VPYf.png)
+
+##### Tela de detalhes do aviso:
+
+![detalhes-aviso](https://i.imgur.com/Y13sOpl.png)
+
+##### Tela de Gerenciamento de tanques:
+
+![gerenciamento-tanque](https://i.imgur.com/M7NIRGe.png)
+
+##### Tela de detalhes do tanque:
+
+![detalhes-tanque](https://i.imgur.com/M7NIRGe.png)
+
+##### Tela de ajuda:
+
+![tela-ajuda](https://i.imgur.com/W0Hle1P.png)
 
 
+### Todos (Funcionalidades Futuras)
 
-## License
+ - Adicionar mais sensores, nesse protótipo, a única propriedade testada foi a de Temperatura
+ - Implementar um Dashboard para o Gerente dos funcionários, contendo as principais informações das propriedades de seus funcionários, pode ser implantado um BI para isso.
+ - Testar funcionalidades
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+License
+----
+
+MIT
+
+
